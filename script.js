@@ -1,9 +1,8 @@
 function login() {
+
+    
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-
-    console.log("Email:", email)
-    console.log('Password: ', password)
 
     const requestBody = JSON.stringify({
         email: email,
@@ -30,7 +29,7 @@ function login() {
         }
     })
     .catch(error => {
-        window.location.href = 'error.php';
+        //window.location.href = 'error.php';
     });
 }
 
