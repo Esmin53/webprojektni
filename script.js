@@ -65,7 +65,7 @@ function register() {
         console.log("Response:", data);
         if (data.toLowerCase().includes('success')) {
             console.log('Registration successful');
-            window.location.href = 'dashboard.php';
+            window.location.href = 'dashboard.html';
         } else {
             console.error('Registration failed:', data);
         }

@@ -13,7 +13,7 @@ body{
 background-size: cover;
 background-repeat: no-repeat;
 background-attachment: fixed;
-
+min-width: 100vw;
 }
 .wrapper {
 justify-content: center;
@@ -91,7 +91,6 @@ transition: .3s ease;
     width: 300px; /* Prilagodite širinu prema vašim potrebama */
     border-radius: 10px;
     text-align: center; /* Dodajte ovu liniju kako biste centrirali sadržaj unutar forme */
-    height: 800px;
   }
   .submit {
     margin-top: 10px;

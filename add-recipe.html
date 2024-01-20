@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="add-recipe.css" />
+</head>
+<body>     
+
+        <ul class="logged-in-navbar">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="recipes.php">My Recipes</a></li>
+            <li><a href="add-recipe.html">Add Recipe</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+
+    <div class="add_recipe_container">
+        <div class="image_container">
+
+        </div>
+        <div class="add_recipe_form_container">
+            <h2>Create new recipe</h2>
+            <form class="add_recipe_form">
+                <input type="text" class="form_input" placeholder="Title" id="title" />
+                <input type="text" class="form_input" placeholder="Cooking time" id="cookingTime" />
+                <textarea name="" id="ingredients" placeholder="Ingredients" class="form_textarea"></textarea>
+                <textarea name="" id="instructions" placeholder="Instructions" class="form_textarea"></textarea>
+            </form>
+            <button class="add_recipe_button" onclick="addRecipe()" type="button">Submit</button>
+        </div>
+    </div>
+    <script src="add-recipe.js"></script>
+</body>
+</html>
