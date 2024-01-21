@@ -11,26 +11,51 @@
 </head>
 <body>     
 
-        <ul class="logged-in-navbar">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="recipes.php">My Recipes</a></li>
-            <li><a href="add-recipe.html">Add Recipe</a></li>
-            <li><a href="logout.php">Logout</a></li>
+    <div class="logged_in_navbar">
+        <h1 class="logo">Cooking</h1>
+        
+        <ul class="navbar_links">
+            <li><a href="index.php" class="navbar_link">Home</a></li>
+            <li><a href="recipes.php" class="navbar_link">My Recipes</a></li>
+            <li><a href="add-recipe.html" class="navbar_link">Add Recipe</a></li>
+            <li><a href="logout.php" class="navbar_link">Logout</a></li>
         </ul>
+    </div>
 
     <div class="add_recipe_container">
-        <div class="image_container">
-
+        <div class="add_recipe_images">
+            <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            alt="" class="add_recipe_image">
+            <img src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            alt="" class="add_recipe_image">
+            <img src="https://images.unsplash.com/photo-1562059390-a761a084768e?q=80&w=2019&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            alt="" class="add_recipe_image">
         </div>
         <div class="add_recipe_form_container">
-            <h2>Create new recipe</h2>
-            <form class="add_recipe_form">
-                <input type="text" class="form_input" placeholder="Title" id="title" />
-                <input type="text" class="form_input" placeholder="Cooking time" id="cookingTime" />
-                <textarea name="" id="ingredients" placeholder="Ingredients" class="form_textarea"></textarea>
-                <textarea name="" id="instructions" placeholder="Instructions" class="form_textarea"></textarea>
-            </form>
-            <button class="add_recipe_button" onclick="addRecipe()" type="button">Submit</button>
+            <div class="add_recipe_flex">
+                <form class="add_recipe_form">
+                    <h2 class="add_recipe_title">Add a recipe</h2>
+                    <input type="text" class="form_input" placeholder="Title" id="title" />
+                    <input type="text" class="form_input" placeholder="Cooking time" id="cookingTime" />
+                    <textarea name="" id="instructions" placeholder="Instructions" class="form_textarea"></textarea>
+                    <div class="ingredients_container">
+                        <input type="text" id="ingredients" class="ingredients_input" placeholder="Ingredient"/>
+                        <input type="text" id="amount" class="ingredients_input" placeholder="Amount" />
+                        <div id="ingredients_button" onclick="addIngredient()">Add</div>
+                    </div>
+                    <div class="add_recipe_button" onclick="addRecipe()" type="submit">Submit</div>
+                </form>
+            </div>
+            <div class="add_recipe_display_ingredients" id="add_recipe_display_ingredients">
+                <p class="display_ingredients_title">Ingredients</p>
+            </div>
+        </div>
+        <div id="toast" class="hide">
+            <div id="toast_header">
+                <p onclick="hideToast()">X</p>
+                <p id="toast_header_text"></p>
+            </div>
+            <p id="toast_body_text"></p>
         </div>
     </div>
     <script src="add-recipe.js"></script>
