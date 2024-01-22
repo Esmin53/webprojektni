@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="navbar_container">
+            <div class="logged_in_navbar">
+                <h1 class="logo">Cooking</h1>
+                
+                <ul class="navbar_links">
+                    <li><a href="homepage.html" class="navbar_link">Home</a></li>
+                    <li><a href="recipes.html" class="navbar_link">My Recipes</a></li>
+                    <li><a href="add-recipe.html" class="navbar_link">Add Recipe</a></li>
+                    <li><a href="logout.html" class="navbar_link">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max_width_wrapper">
+            <div class="search_container">
+                <h2 class="search_header">Find the perfect recipe, <br />right away</h2>
+                <div class="search_bottom">
+                    <div class="search">
+                        <input type="text" id="search_input" placeholder="Search..."/>
+                        <button id="search_button" onclick="filterData()">Search</button>
+                    </div>
+                    <div class="home_select_wrapper">
+
+                        <div class="form_select_container">
+                            <label for="dificulty" class="select_label">Dificulty</label>
+                            <select class="home_select" id="dificulty">
+                                <option value="any" class="select_option">Any</option>
+                                <option value="easy" class="select_option">Easy</option>
+                                <option value="medium" class="select_option">Medium</option>
+                                <option value="intermediate" class="select_option">Intermediate</option>
+                                <option value="hard" class="select_option">Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="form_select_container">
+                            <label for="cookingTime" class="select_label">Cooking time</label>
+                            <select class="home_select" id="cookingTime">
+                                <option value="any" class="select_option">Any</option>
+                                <option value="15" class="select_option">15 minutes or less</option>
+                                <option value="30" class="select_option">30 minutes</option>
+                                <option value="45" class="select_option">45 minutes</option>
+                                <option value="60" class="select_option">1 hour</option>
+                                <option value="90" class="select_option">1 hour and 30 minutes</option>
+                                <option value="120" class="select_option"">2 hours</option>
+                                <option value="150" class="select_option"">2 hours and 30 minutes</option>
+                                <option value="180" class="select_option"">3 hours</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="recipes_container" id="recipes_container">
+                <div class="recipe_container">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Recipe image" class="recipe_image"/>
+                    <div class="">
+
+                    </div>
+                    <div class="recipe_top">
+                        <h3 class="recipe_title">Belgian Steak</h3>
+                        <p class="recipe_time">1 hour</p>
+                    </div>
+                    <p class="recipe_instructions">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, quis! Architecto labore nisi voluptatem incidunt sit dolor inventore, laudantium magni.</p>
+                    <button class="recipe_button">See recipe</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="home.js" ></script>
+</body>
+</html>

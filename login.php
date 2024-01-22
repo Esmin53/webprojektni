@@ -7,7 +7,7 @@ $errors = array();
 if (isset($_SESSION['email'])) {
     // Create a JSON response for successful login
     header('Content-Type: application/json');
-    echo json_encode(['status' => 'success', 'message' => 'Login successful']);
+    echo json_encode(['status' => 'success', 'message' => $_SESSION['email']]);
 } else {
     // Check if the data is sent via JSON
     $json_data = file_get_contents("php://input");
@@ -43,14 +43,15 @@ function login($conn, $data) {
 
         if ($result->num_rows == 1) {
             $user = $result->fetch_assoc();
-            if (password_verify($password, $user['password'])) {
+            if ($password === $user['password']) {
                 // Password is correct
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['success'] = "You are now logged in";
 
+                var_dump($_SESSION);
                 // Create a JSON response for successful login
                 header('Content-Type: application/json');
-                echo json_encode(['status' => 'success', 'message' => 'Login successful']);
+                echo json_encode(['status' => 'success', 'message' => $_SESSION['email']]);
             } else {
                 array_push($errors, "Wrong password");
             }

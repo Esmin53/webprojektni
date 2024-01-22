@@ -21,9 +21,8 @@ function login() {
         console.log('JSON Response:', data);
 
         if (data && data.status && data.status.toLowerCase() === 'success') {
-            console.log('Login successful');
-            console.log('Redirecting to dashboard.php');
-        window.location.href = 'dashboard.php';
+            console.log("Login success")
+        //window.location.href = 'dashboard.html';
         } else {
             console.error('Login failed:', data && data.message);
         }
@@ -99,3 +98,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+

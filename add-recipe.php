@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $host = "localhost";
 $db_username = "root";
 $db_password = "";
@@ -21,9 +21,11 @@ $title = isset($data['title']) ? $data['title'] : null;
 $cookingTime = isset($data['cookingTime']) ? $data['cookingTime'] : null;
 $ingredients = isset($data['ingredients']) ? $data['ingredients'] : null;
 $instructions = isset($data['instructions']) ? $data['instructions'] : null;
+$dificulty = isset($data['dificulty']) ? $data['dificulty'] : null;
+$userEmail = $_SESSION['email'];
 
 // Insert data into the "recepti" table
-$sqlRecepti = "INSERT INTO recepti (title, cookingTime, instructions) VALUES ('$title', '$cookingTime', '$instructions')";
+$sqlRecepti = "INSERT INTO recepti (title, cookingTime, difficulty, instructions, user_email) VALUES ('$title', '$cookingTime', '$dificulty','$instructions', '$userEmail')";
 
 $response = array();
 

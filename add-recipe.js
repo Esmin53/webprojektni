@@ -1,3 +1,18 @@
+const checkSession = async () => {
+    try {
+        const response = await fetch('backend.php?action=getSession')
+
+        const session = await response.json()
+   
+        console.log(session)
+        if(!session.data) window.location.href = "homepage.html"
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+checkSession()
+
 let ingredients = []
 let toast = document.getElementById('toast')
 
@@ -23,12 +38,29 @@ const hideToast = () => {
 }
 
 const addIngredient = () => {
-    let ingredient = document.getElementById('ingredients').value
-    let amount = document.getElementById('amount').value
+    let ingredient = document.getElementById('ingredients')
+    let amount = document.getElementById('amount')
+
+    if(ingredient.value.length === 0) {
+        ingredient.classList.add("input_error");
+        showToast("Something went wrong!", "Please provide ingredient name and ammount")
+        return
+    } else {
+        ingredient.classList.remove("input_error");
+    }
+
+    if(amount.value.length === 0) {
+        amount.classList.add("input_error");
+        showToast("Something went wrong!", "Please provide ingredient name and ammount")
+        return
+    } else {
+        amount.classList.remove("input_error");
+    }
+
 
     ingredients = [...ingredients, {
-        ingredient_name: ingredient,
-        amount
+        ingredient_name: ingredient.value,
+        amount: amount.value
     }]
 
     const displayIngredints = document.getElementById("add_recipe_display_ingredients");
@@ -39,14 +71,14 @@ const addIngredient = () => {
 
     const ingredientElement = document.createElement('p');
     ingredientElement.className = "display_ingredient";
-    ingredientElement.textContent = ingredient;
+    ingredientElement.textContent = `${ingredient.value},`;
 
     const dotsElement = document.createElement('span');
     dotsElement.className = "display_ingredient_dots";
 
     const amountElement = document.createElement('p');
     amountElement.className = "display_amount";
-    amountElement.textContent = amount;
+    amountElement.textContent = amount.value;
 
     // Append the new elements to the ingredientContainer
     ingredientContainer.appendChild(ingredientElement);
@@ -64,7 +96,10 @@ const addRecipe = async () => {
     try {
         const title = document.getElementById('title');
         const cookingTime = document.getElementById('cookingTime');
+        const dificulty = document.getElementById('dificulty');
         const instructions = document.getElementById('instructions');
+
+        console.log(dificulty)
     
         if(title.value.length === 0) {
             title.classList.add("input_error");
@@ -73,7 +108,7 @@ const addRecipe = async () => {
         } else {
             title.classList.remove("input_error");
         }
-        if(cookingTime.value.length === 0) {
+        if(cookingTime.value === null) {
             cookingTime.classList.add("input_error");
             
             showToast("Something went wrong!", "Cooking time input can not stay empty")
@@ -99,7 +134,8 @@ const addRecipe = async () => {
             title: title.value,
             cookingTime: cookingTime.value,
             ingredients,
-            instructions: instructions.value
+            instructions: instructions.value,
+            dificulty: dificulty.value
         });
 
         const response = await fetch('add-recipe.php', {
@@ -118,7 +154,23 @@ const addRecipe = async () => {
 
         console.log(data)
     } catch (error) {
-        console.log(error)
+        showToast("Something went wrong!", "There was an error uploading your recipe, please try again later!")
+        throw new Error(error);
     }
 
 };
+
+const handleLogout = async () => {
+    try {
+        
+        const response = await fetch('backend.php?action=logOut')
+
+        const data = await response.json()
+
+        console.log(data)
+
+        //window.location.href = '/homepage.html'
+    } catch (error) {
+        showToast('Something went wrong!', 'There was an error signing you out. Please try again later')
+    }
+}
