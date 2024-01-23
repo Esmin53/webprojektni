@@ -10,7 +10,8 @@
 
 body{
  background: url("HD\ wallpaper_\ buildings\ illustration\,\ animated\ pink\ and\ black\ buildings\ illustration.jpg");
-background-size: cover;
+ background-size: cover;
+ background-position: center;
 background-repeat: no-repeat;
 background-attachment: fixed;
 min-width: 100vw;
@@ -128,7 +129,7 @@ transition: .3s ease;
   .nav-button {
     display: flex;
   }
-  .link:hover, .active{
+  .link:hover,  .navbar_link:hover, .active{
     border-bottom: 2px solid #fff;
     }
     
@@ -160,3 +161,42 @@ transition: .3s ease;
     .input-box.password i {
       color: #f44336; /* Crvena boja za ikonu lozinke */
     } 
+
+    .navbar_container {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+  }
+  
+  .logged_in_navbar {
+      width: 100%;
+      max-width: 1340px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      gap: 1rem;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      position: sticky;
+      top: 0;
+  }
+  
+  .navbar_links {
+      display: flex;
+      gap: 1rem;
+      color: white;
+      list-style: none;
+  }
+  
+  .navbar_link {
+      color: white;
+      text-decoration: none;
+  }
+  
+  .max_width_wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }

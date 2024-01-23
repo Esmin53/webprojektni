@@ -84,7 +84,13 @@ const processData = () => {
         const recipeButton = document.createElement('button');
         recipeButton.className = 'recipe_button';
         recipeButton.textContent = 'See recipe';
-        recipeDiv.appendChild(recipeButton);
+
+
+        const recipeLink = document.createElement('a');
+        recipeLink.className = 'recipe_button';
+        recipeLink.textContent = 'See recipe';
+        recipeLink.href = `recipe.html?recipeId=${recipe.id}`
+        recipeDiv.appendChild(recipeLink);
     
         // Append the recipe div to the container
         recipesContainer.appendChild(recipeDiv);

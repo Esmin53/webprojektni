@@ -16,10 +16,19 @@ display: flex;
 flex-direction: column;
 align-items: center;
 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAElBMVEUAAAD8/vz08vT09vT8+vzs7uxH16TeAAAAAXRSTlMAQObYZgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAuFJREFUOI0Vk+3NLiEIRG1B8ClAYAsQ2AIEt4D9ePtv5Xp/mZgYJ2fOFJKEfInkVWY2aglmQFkimRTV7MblYyVqD7HXyhKsSuPX12MeDhRHLtGvRG+P+B/S0Vu4OswR9tmvwNPyhdCDbVayJGads/WiUWcjCvCnruTBNHS9gmX2VzVbk7ZvB1gb1hkWFGl+A/n+/FowcO34U/XvKqZ/fHY+6vgRfU92XrOBUbGeeDfQmjWjdrK+frc6FdGReQhfSF5JvR29O2QrfNw1huTwlgsyXLo0u+5So82sgv7tsFZR2nxB6lXiquHrfD8nfYZ9SeT0LiuvSoVrxGY16pCNRZKqvwWsn5OHypPBELzohMCaRaa0ceTHYqe7X/gfJEEtKFbJpWoNqO+aS1cuTykGPpK5Ga48m6L3NefTr013KqYBQu929iP1oQ/7UwSR+i3zqruUmT84qmhzLpxyj7pr9kg7LKvqaXxZmdpn+6o8sHqSqojy02gU3U8q9PnpidiaLks0mbMYz+q2uVXsoBQ8bfURULYxRgZVYCHMv9F4OA7qxT2NPPpvGQ/sTDH2yznKh7E2AcErfcNsaIoN1izzbJiaY63x4QjUFdBSvDCvugPpu5xDny0jzEeuUQbcP1aGT9V90uixngTRLYNEIIZ6yOF1H8tm7rj2JxiefsVy53zGVy3ag5uuPsdufYOzYxLRxngKe7nhx3VAq54pmz/DK9/Q3aDam2Yt3hNXB4HuU87jKNd/CKZn77Qdn5QkXPfqSkhk7hGOXXB+7v09KbBbqdvxGqa0AqfK/atIrL2WXdAgXAJ43Wtwe/aIoacXezeGPMlhDOHDbSfHnaXsL2QzbT82GRwZuezdwcoWzx5pnOnGMUdHuiY7lhdyWzWiHnucLZQxYStMJbtcydHaQ6vtMbe0AcDbxG+QG14AL94xry4297xpy9Cpf1OoxZ740gHDfrK+gtsy0xabwJmfgtCeii79B6aj0SJeLbd7AAAAAElFTkSuQmCC);
+
+}
+
+.navbar_wrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background-color: #FFA07A;
 }
 
 .logged_in_navbar {
-    width: 100vw;
+    width: 100%;
+    max-width: 1280px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,7 +55,7 @@ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMA
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 1340px;
+    max-width: 1280px;
     padding: 0.5rem;
     height: calc(100vh - 4rem);
 }
@@ -55,9 +64,10 @@ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMA
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    background-color: rgb(252, 253, 254);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    border-radius: 1rem;
 }
 
 .add_recipe_image_container {
@@ -77,14 +87,16 @@ h2 {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .add_recipe_form {
     min-width: 450px;
-    margin: 3rem;
+    margin: 2rem;
+    margin-top: 0.25rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
 
 .add_recipe_title {
@@ -103,7 +115,7 @@ h2 {
     outline: none;
     background-color: rgb(249, 246, 246);
     border: 0.1rem #234 solid;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
 }
 
 .form_select_wrapper {
@@ -118,7 +130,7 @@ h2 {
     outline: none;
     background-color: rgb(249, 246, 246);
     border: 0.1rem #234 solid;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     padding: 0.75rem 0.5rem;
 }
 
@@ -134,7 +146,7 @@ h2 {
     outline: none;
     background-color: rgb(249, 246, 246);
     border: 0.1rem #234 solid;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
 }
 
 .ingredients_container {
@@ -147,7 +159,7 @@ h2 {
     outline: none;
     background-color: rgb(249, 246, 246);
     border: 0.1rem #234 solid;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     padding: 0.75rem 0.5rem;
     width: 40%;
 }
@@ -236,7 +248,7 @@ h2 {
     background-color: rgb(244, 61, 61);
     height: 10rem;
     width: 22.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     flex-direction: column;
     padding: 1.5rem 0.5rem;
     color: white;

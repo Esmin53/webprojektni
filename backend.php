@@ -32,6 +32,44 @@ if ($action === 'getkorisnici') {
     // Perform logic for adding an article
 } elseif ($action === 'editArticle') {
     // Perform logic for editing an article
+} elseif ($action === 'getRecipe') {
+    $recipeId = $_GET['id']; // Replace with the desired recipe_id
+
+// Fetch recipe details
+$sqlRecipe = "SELECT * FROM recepti WHERE id = $recipeId";
+$resultRecipe = $conn->query($sqlRecipe);
+
+if ($resultRecipe && $resultRecipe->num_rows > 0) {
+    $recipeData = $resultRecipe->fetch_assoc();
+
+    // Fetch ingredients for the recipe
+    $sqlIngredients = "SELECT ingredient_name, amount FROM ingredients WHERE recepti_id = $recipeId";
+    $resultIngredients = $conn->query($sqlIngredients);
+
+    if ($resultIngredients) {
+        $ingredients = array();
+        while ($row = $resultIngredients->fetch_assoc()) {
+            $ingredients[] = array(
+                'ingredient_name' => $row['ingredient_name'],
+                'amount' => $row['amount']
+            );
+        }
+
+        // Combine recipe details and ingredients into a single object
+        $recipeObject = array(
+            'recipeData' => $recipeData,
+            'ingredients' => $ingredients
+        );
+
+        // Send the combined object back to the user
+        echo json_encode($recipeObject);
+    } else {
+        echo json_encode(['error' => $conn->error]);
+    }
+} else {
+    echo json_encode(['error' => 'Recipe not found']);
+}
+
 } elseif ($action === 'getRecipes') {
     // Handle the action to get recipe data
     $result = $conn->query("SELECT * FROM recepti");
