@@ -28,8 +28,41 @@ if ($action === 'getkorisnici') {
 
     // Respond with the fetched data
     echo json_encode($data);
+} else if($action === 'getUser') {
+    $userEmail = $_GET['email'];
+
+    $stmt = $conn->prepare("SELECT id, first_name, last_name, email FROM korisnici WHERE email = ?");
+    $stmt->bind_param("s", $userEmail);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $data = array();
+
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    };
+
+    echo json_encode($data);
+
 } elseif ($action === 'addArticle') {
     // Perform logic for adding an article
+} elseif ($action === 'getUsersRecipes') {
+    $userEmail = $_SESSION['email'];
+
+    // Use single quotes around the email value in the WHERE clause
+    $result = $conn->query("SELECT title, cookingTime, difficulty, id FROM recepti WHERE user_email = '$userEmail'");
+
+    $data = array(); // Initialize the data array
+
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    // Respond with the fetched data
+    echo json_encode($data);
+
 } elseif ($action === 'editArticle') {
     // Perform logic for editing an article
 } elseif ($action === 'getRecipe') {
@@ -97,11 +130,25 @@ if ($resultRecipe && $resultRecipe->num_rows > 0) {
         header('Content-Type: application/json');
         echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
     }
-} elseif ($action === 'deleteArticle') {
-    // Perform logic for deleting an article
+} elseif ($action === 'deleteRecipe') {
+    if (isset($_SESSION['email'])) {
+        $recipeId = $_GET['id'];
+
+        $sqlRecipe = "DELETE FROM recepti WHERE id = $recipeId";
+        $resultRecipe = $conn->query($sqlRecipe);
+
+
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'success', 'message' => 'Succesfully deleted']);
+    } else {
+        // Return a JSON response indicating that the user is not logged in
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
+    }
+
+    
 } elseif ($action === 'getSession') {
-    // Handle the action to get session data
-    $response = array();  // Create an associative array for the response
+    $response = array();
 
     if (isset($_SESSION['email'])) {
         $userEmail = $_SESSION['email'];

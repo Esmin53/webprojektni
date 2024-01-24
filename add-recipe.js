@@ -1,47 +1,13 @@
-const checkSession = async () => {
-    try {
-        const response = await fetch('backend.php?action=getSession')
 
-        const session = await response.json()
-   
-        console.log(session)
-        if(!session.data) window.location.href = "homepage.html"
-    } catch (error) {
-        console.log(error)
-    }
-}
 
-checkSession()
 
 let ingredients = []
-let toast = document.getElementById('toast')
-
-const showToast = (htext, btext) => {
-    toast.classList.remove('hide')
-    toast.classList.add('show')
-
-    const header = document.getElementById('toast_header')
-
-    const headerText = document.getElementById('toast_header_text')
-    headerText.textContent = htext
-    
-    const bodyText = document.getElementById('toast_body_text')
-    bodyText.textContent = btext
-
-
-
-}
-
-const hideToast = () => {
-    toast.classList.remove('show')
-    toast.classList.add('hide')
-}
 
 const addIngredient = () => {
     let ingredient = document.getElementById('ingredients')
     let amount = document.getElementById('amount')
 
-    if(ingredient.value.length === 0) {
+    if(checkInputLength(ingredient, 1)) {
         ingredient.classList.add("input_error");
         showToast("Something went wrong!", "Please provide ingredient name and ammount")
         return
@@ -49,7 +15,7 @@ const addIngredient = () => {
         ingredient.classList.remove("input_error");
     }
 
-    if(amount.value.length === 0) {
+    if(checkInputLength(amount, 1)) {
         amount.classList.add("input_error");
         showToast("Something went wrong!", "Please provide ingredient name and ammount")
         return
@@ -99,15 +65,12 @@ const addRecipe = async () => {
         const dificulty = document.getElementById('dificulty');
         const instructions = document.getElementById('instructions');
 
-        console.log(dificulty)
     
-        if(title.value.length === 0) {
+        if(checkInputLength(title, 2)) {
             title.classList.add("input_error");
-            showToast("Something went wrong!", "Title input can not stay empty")
+            showToast("Something went wrong!", "Title must be at least 2 characters long!")
             return
-        } else {
-            title.classList.remove("input_error");
-        }
+        } 
         if(cookingTime.value === null) {
             cookingTime.classList.add("input_error");
             
@@ -121,12 +84,10 @@ const addRecipe = async () => {
             showToast("Something went wrong!", "You must provide atleast 2 ingredients!")
             return
         }
-        if(instructions.value.length === 0) {
+        if(checkInputLength(instructions, 2)) {
             instructions.classList.add("input_error");
-            showToast("Something went wrong!", "Instructions input can not stay empty")
+            showToast("Something went wrong!", "Instructions must be atleast 2 characters long")
             return
-        } else {
-            instructions.classList.remove("input_error");
         }
         
         
@@ -159,18 +120,3 @@ const addRecipe = async () => {
     }
 
 };
-
-const handleLogout = async () => {
-    try {
-        
-        const response = await fetch('backend.php?action=logOut')
-
-        const data = await response.json()
-
-        console.log(data)
-
-        //window.location.href = '/homepage.html'
-    } catch (error) {
-        showToast('Something went wrong!', 'There was an error signing you out. Please try again later')
-    }
-}

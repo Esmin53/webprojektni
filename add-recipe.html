@@ -8,17 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <title>Document</title>
     <link rel="stylesheet" href="add-recipe.css" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body>     
+<body class="grainy">     
 
-    <div class="navbar_wrapper">
+    <div class="navbar_container" style="background-color: #FFA07A;">
         <div class="logged_in_navbar">
             <h1 class="logo">Cooking</h1>
-            <ul class="navbar_links">
+            
+            <ul id="navbar_links">
                 <li><a href="homepage.html" class="navbar_link">Home</a></li>
                 <li><a href="dashboard.html" class="navbar_link">Dashboard</a></li>
                 <li><a href="add-recipe.html" class="navbar_link">Add Recipe</a></li>
-                <li class="navbar_link" onclick="handleLogout()">Logout</li>
             </ul>
         </div>
     </div>
@@ -74,5 +75,6 @@
         </div>
     </div>
     <script src="add-recipe.js"></script>
+    <script src="functions.js"></script>
 </body>
 </html>

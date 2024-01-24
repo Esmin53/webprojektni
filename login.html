@@ -36,13 +36,6 @@
 
         <div class="register-container" id="register">
           <div>
-            <span class="top">
-              Already have an account? <a href="#" onclick="login()">Login</a>
-              <form
-              id="loginBtn"
-              action="login.php"
-              method="post"></form>
-             </span>
             <header>Sign Up</header>
           </div>
           <div class="input-box email">
@@ -65,6 +58,7 @@
             />
             <i class="bx bx-lock-alt"></i>
           </div>
+          <div onclick="login()" class="submit">Login</div>
           <!-- Ostatak forme i ostali elementi... -->
     
           <div class="two-forms">
@@ -114,8 +108,16 @@
             </div>
           </div>
         </div>
+        <div id="toast" class="hide">
+          <div id="toast_header">
+              <p onclick="hideToast()"><i class='bx bx-x' style='color:#ffffff'  ></i></p>
+              <p id="toast_header_text"></p>
+          </div>
+          <p id="toast_body_text"></p>
+      </div>
       </div>
       <script src="script.js"></script>
+      <script src="functions.js"></script>
     </div>
   </body>
 </html>

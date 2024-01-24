@@ -3,30 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <title>Cooking Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="dash.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="purple">
 
     <div class="navbar_container">
       <div class="logged_in_navbar">
           <h1 class="logo">Cooking</h1>
           
-          <ul class="navbar_links">
+          <ul id="navbar_links">
               <li><a href="homepage.html" class="navbar_link">Home</a></li>
               <li><a href="dashboard.html" class="navbar_link">Dashboard</a></li>
               <li><a href="add-recipe.html" class="navbar_link">Add Recipe</a></li>
-              <li><a href="logout.html" class="navbar_link">Logout</a></li>
           </ul>
       </div>
   </div>
 
-    <main>
-      <section id="content">
-        <!-- Content will be dynamically loaded here using JavaScript -->
-      </section>
-    </main>
+    <div class="max_width_wrapper">
+      <div class="dashboard_container">
+        <div id="recipes_container">
+          <h2 class="dashboard_header">
+            My recipes
+          </h2>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="setting_container">
+          
+          <div class="user_info_container">
+            <div id="user_info"> 
+              <p>Username</p>
+            </div>
+            <div class="recipe_count">
+              <i class='bx bxs-baguette' style='color:#fff; font-size: 2rem;'></i>
+              <p id="recipe_count"></p>
+            </div>
+          </div>
+          
+          <div class="dashboard_forms_container">
+
+            <form class="password_container_wrapper">
+              <div id="password_container">
+                <h2 class="dashboard_header">Change Password</h2>
+                <div class="dashboard_input_wrapper">
+                  <label for="password" >Old password</label>
+                  <input class="dashboard_input" type="password" id="oldPassword" placeholder="Your old password"/>
+                </div>
+                <div class="dashboard_input_wrapper">
+                  <label for="confirmPassword" >New password</label>
+                  <input class="dashboard_input" type="password" id="newPassword" placeholder="Your new password"/>
+                </div>
+                <div class="dashboard_input_wrapper">
+                  <label for="confirmPassword" >Confirm new password</label>
+                  <input class="dashboard_input" type="password" id="confirmNewPassword" placeholder="Your new password"/>
+                </div>
+                <button id="change_password_button" onclick="changePassword(event)">Change password</button>
+                <p class="password_disclaimer">After succesfully completing this action you will be signed out and redirected to login.</p>
+              </form>
+          </div>
+
+          <form class="recipe_edit_container">
+            <h2 class="dashboard_header">Edit recipe
+              <span id="dashboard_header_title"></span>
+            </h2>
+              <div class="dashboard_input_wrapper">
+                <label for="title" >Title</label>
+                <input class="dashboard_input" type="text" id="title" placeholder="Recipe title"/>
+              </div>
+              <div class="dashboard_input_wrapper">
+                <label for="ingredients" >Recipe instructions</label>
+                <input class="dashboard_textarea" type="text" id="instructions" placeholder="Recipe instructions"/>
+              </div>
+              <div class="dashboard_select_wrapper">
+                <select class="form_select" id="dificulty">
+                    <option value="easy" class="cookingTime_option">Easy</option>
+                    <option value="medium" class="cookingTime_option">Medium</option>
+                    <option value="intermediate" class="cookingTime_option">Intermediate</option>
+                    <option value="hard" class="cookingTime_option">Hard</option>
+                </select>
+
+                <select class="form_select" id="cookingTime">
+                    <option value="15" class="cookingTime_option">15 minutes or less</option>
+                    <option value="30" class="cookingTime_option">30 minutes</option>
+                    <option value="45" class="cookingTime_option">45 minutes</option>
+                    <option value="60" class="cookingTime_option">1 hour</option>
+                    <option value="90" class="cookingTime_option">1 hour and 30 minutes</option>
+                    <option value="120" class="cookingTime_option"">2 hours</option>
+                    <option value="150" class="cookingTime_option"">2 hours and 30 minutes</option>
+                    <option value="180" class="cookingTime_option"">3 hours</option>
+                </select>
+            </div>
+            <button id="change_password_button" onclick="editRecipe(event)">Edit Recipe</button>
+            </form>
+
+ 
+          </div>
+    
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+
+    <div id="toast" class="hide">
+      <div id="toast_header">
+          <p onclick="hideToast()"><i class='bx bx-x' style='color:#ffffff'  ></i></p>
+          <p id="toast_header_text"></p>
+      </div>
+      <p id="toast_body_text"></p>
+  </div>
+</div>
+  </div>
+
+    <script src="dash.js"></script>
+    <script src="functions.js" ></script>
   </body>
 </html>

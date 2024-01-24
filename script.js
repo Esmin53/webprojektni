@@ -1,79 +1,113 @@
-function login() {
+async function login() {
+    try {
+        var email = document.getElementById("email")
+        var password = document.getElementById("password")
 
-    
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-
-    const requestBody = JSON.stringify({
-        email: email,
-        password: password,
-    });
-
-    fetch("login.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: requestBody,
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('JSON Response:', data);
-
-        if (data && data.status && data.status.toLowerCase() === 'success') {
-            console.log("Login success")
-        //window.location.href = 'dashboard.html';
-        } else {
-            console.error('Login failed:', data && data.message);
+        if(checkInputLength(email, 2)) {
+            showToast('Authentification error', 'Please provide valid email adress!')
+            return
         }
-    })
-    .catch(error => {
-        //window.location.href = 'error.php';
-    });
+
+        if(checkInputLength(password, 2)) {
+            showToast('Authentification error', 'Please provide valid email adress!')
+            return
+        }
+    
+        const requestBody = JSON.stringify({
+            email: email.value,
+            password: password.value,
+        });
+    
+        const response = await fetch("login.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: requestBody,
+        })
+
+        if(!response.ok) {
+            showToast('Something went wrong', 'There was an problem signing you in, please try again later')
+        }
+
+        const data = await response.json()
+        
+        if(data && data.status === 'success') window.location.href = 'homepage.html'
+
+        console.log(data)
+    } catch (error) {
+        showToast('Something went wrong', 'There was an problem signing you in, please try again later')
+        console.log(error)
+    }
 }
+    
 
 
-function register() {
-    const firstNameField = document.getElementById("Firstname").value;
-    const lastNameField = document.getElementById("Lastname").value;
-   const passwordField = document.getElementById("registerPassword").value;
-    const EmailField = document.getElementById("Email").value;
 
-    const requestBody = JSON.stringify({
-        firstName: firstNameField,
-        lastName: lastNameField,
-        password: passwordField,
-        Email: EmailField
-    });
 
-    fetch("register.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: requestBody,
-    })
-    .then(response => {
+
+async function register() {
+    try {
+        const firstNameField = document.getElementById("Firstname")
+        const lastNameField = document.getElementById("Lastname")
+       const passwordField = document.getElementById("registerPassword")
+       const confirmPasswordField = document.getElementById("confirmPassword")
+        const EmailField = document.getElementById("Email")
+        const userName = document.getElementById('username')
+    
+        if(checkInputLength(firstNameField, 1) || checkInputLength(lastNameField, 1) || checkInputLength(userName, 2) ||
+         checkInputLength(EmailField, 1) || checkInputLength(passwordField, 2) || checkInputLength(confirmPasswordField, 1)) {
+            showToast('Registration error', 'Please provide all required information')
+            return
+        }
+    
+        if(!checkInputValues(passwordField, confirmPasswordField)) {
+            showToast('Registration error', 'Password and confirm password fields must match!')
+            confirmPasswordField.classList.add('input_error')
+            passwordField.classList.add('input_error')
+            return
+        } else {
+            confirmPasswordField.classList.remove('input_error')
+            passwordField.classList.remove('input_error')
+        }
+    
+        const requestBody = JSON.stringify({
+            firstName: firstNameField.value,
+            lastName: lastNameField.value,
+            password: passwordField.value,
+            Email: EmailField.value,
+            username: userName.value
+        });
+
+        const response = await fetch("register.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: requestBody,
+        })
+
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.text();
 
-    })
-    .then(data => {
-        console.log("Response:", data);
-        if (data.toLowerCase().includes('success')) {
-            console.log('Registration successful');
-            window.location.href = 'dashboard.html';
+        const data = await response.json()
+
+        if(data.data == 'duplicate email') {
+            showToast('Invalid email', 'User with that email already exists, please try again with a differnet email!')
+            EmailField.classList.add('input_error')
         } else {
-            console.error('Registration failed:', data);
+            EmailField.classList.remove('input_error')
+        }
+
+        if(data.status == 'success') {
+            window.location.href = 'homepage.html'
         }
         
-    })
-
-    .catch(error => {
-        console.error("Error:", error);
-    });
+    } catch (error) {
+        showToast('Something went wrong', 'There was an error creating your account please try again later')
+        console.log(error)   
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -98,4 +132,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-

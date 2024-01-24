@@ -2,29 +2,6 @@ let originalData = [];
 let data = [];
 const recipesContainer = document.getElementById('recipes_container');
 
-const convertCookingTime = (cookingTime) => {
-
-    if(cookingTime == 15) {
-        return '15 minutes or less'
-    } else if(cookingTime == 30) {
-        return '30 minutes'
-    } else if (cookingTime == 45) {
-        return '45 minutes'
-    } else if (cookingTime == 60) {
-        return '1 hour'
-    } else if (cookingTime == 90) {
-        return '1 hour and 30 minutes'
-    } else if (cookingTime == 120) {
-        return '2 hours'
-    } else if (cookingTime == 150) {
-        return '2 hours and 30 minutes'
-    } else if (cookingTime == 180) {
-        return '3 hours or more'
-    } else {
-        return 'Suiiiii'
-    }
-}
-
 const getData = async () => {
     try {
         const response = await fetch('backend.php?action=getRecipes')
